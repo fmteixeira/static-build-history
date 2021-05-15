@@ -1,0 +1,86 @@
+{
+  "object_kind": "pipeline",
+  "object_attributes": {
+    "id": 303429779,
+    "ref": "main",
+    "tag": false,
+    "sha": "8701866d6aa9e8cd84dfeb0c9ec160b9927539b5",
+    "before_sha": "ff8c1970dc67eb9adeb51814a57bb7c4870ca8d7",
+    "source": "push",
+    "status": "success",
+    "detailed_status": "passed",
+    "stages": ["build"],
+    "created_at": "2021-05-15 18:31:49 UTC",
+    "finished_at": "2021-05-15 18:35:47 UTC",
+    "duration": 236,
+    "queued_duration": 2,
+    "variables": []
+  },
+  "merge_request": null,
+  "user": {
+    "id": 3750429,
+    "name": "Frederico Medeiros Correia Teixeira",
+    "username": "Fred400",
+    "avatar_url": "https://secure.gravatar.com/avatar/55232bd28dbd71f4c82c1591ee72cef4?s=80&d=identicon",
+    "email": "black_trim@hotmail.com"
+  },
+  "project": {
+    "id": 26672019,
+    "name": "front-end-stack",
+    "description": null,
+    "web_url": "https://gitlab.com/Fred400/front-end-stack",
+    "avatar_url": null,
+    "git_ssh_url": "git@gitlab.com:Fred400/front-end-stack.git",
+    "git_http_url": "https://gitlab.com/Fred400/front-end-stack.git",
+    "namespace": "Frederico Medeiros Correia Teixeira",
+    "visibility_level": 20,
+    "path_with_namespace": "Fred400/front-end-stack",
+    "default_branch": "main",
+    "ci_config_path": ""
+  },
+  "commit": {
+    "id": "8701866d6aa9e8cd84dfeb0c9ec160b9927539b5",
+    "message": "fixed storybook cicd\n",
+    "title": "fixed storybook cicd",
+    "timestamp": "2021-05-15T18:31:43+00:00",
+    "url": "https://gitlab.com/Fred400/front-end-stack/-/commit/8701866d6aa9e8cd84dfeb0c9ec160b9927539b5",
+    "author": {
+      "name": "Frederico",
+      "email": "black_trim@hotmail.com"
+    }
+  },
+  "builds": [
+    {
+      "id": 1264822871,
+      "stage": "build",
+      "name": "build_storybook",
+      "status": "success",
+      "created_at": "2021-05-15 18:31:49 UTC",
+      "started_at": "2021-05-15 18:31:51 UTC",
+      "finished_at": "2021-05-15 18:35:47 UTC",
+      "duration": 236.085024,
+      "queued_duration": 1.907721,
+      "when": "on_success",
+      "manual": false,
+      "allow_failure": false,
+      "user": {
+        "id": 3750429,
+        "name": "Frederico Medeiros Correia Teixeira",
+        "username": "Fred400",
+        "avatar_url": "https://secure.gravatar.com/avatar/55232bd28dbd71f4c82c1591ee72cef4?s=80&d=identicon",
+        "email": "black_trim@hotmail.com"
+      },
+      "runner": {
+        "id": 380986,
+        "description": "shared-runners-manager-5.gitlab.com",
+        "active": true,
+        "tags": ["docker", "gce"]
+      },
+      "artifacts_file": {
+        "filename": "artifacts.zip",
+        "size": 1933901
+      },
+      "environment": null
+    }
+  ]
+}
