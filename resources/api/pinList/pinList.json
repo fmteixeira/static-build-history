@@ -1,0 +1,26 @@
+{
+  "count": 1,
+  "rows": [
+    {
+      "id": "245386c5-dbe4-4c75-96d3-06e973689bf3",
+      "ipfs_pin_hash": "Qmc5p3YPP6XZThyNFEbQnwcikYVJKhMMFRMjtrby8LFiP1",
+      "size": 7688464,
+      "user_id": "ced0b2ed-1eb8-4594-aca4-ad0cafac3119",
+      "date_pinned": "2021-05-15T20:24:26.620Z",
+      "date_unpinned": null,
+      "metadata": {
+        "name": "build_storybook-1264822871",
+        "keyvalues": {
+          "customKey": 1264822871
+        }
+      },
+      "regions": [
+        {
+          "regionId": "NYC1",
+          "currentReplicationCount": 1,
+          "desiredReplicationCount": 1
+        }
+      ]
+    }
+  ]
+}
