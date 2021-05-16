@@ -14,3 +14,11 @@ export interface PinProjectInfo {
   branch: string;
   commit: string;
 }
+
+export interface TreeNode {
+  key: string;
+  label: string;
+  url?: string;
+  pin?: Pin;
+  nodes?: TreeNode[];
+}

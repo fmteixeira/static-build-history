@@ -11,11 +11,7 @@ const pinata = pinataSDK(
 );
 import { Pipeline } from "../../Api/mocks/types";
 import pipeleMock from "../../Api/mocks/pipeline.json";
-import { createPinCrawlFile } from "../../resources/utils/crawlFile";
-import { PinCrawl } from "../../Api/types";
 import getSrcPath from "../../resources/utils/getSrcPath";
-
-const dir = process.env.BUILD_FOLDER;
 
 interface Request extends NextApiRequest {
   body: Pipeline.RootObject;
@@ -28,19 +24,30 @@ export default async (req: Request, res: NextApiResponse) => {
     // const branch: string = req.body.object_attributes.ref;
     // const builds: Pipeline.Build[] = req.body.builds;
 
+    if (pipeleMock?.object_attributes?.status !== "success") {
+      return res.status(200);
+    }
+
     const path: string = pipeleMock.project.path_with_namespace;
     const builds: Pipeline.Build[] = pipeleMock.builds;
     const project: string = pipeleMock.project.name;
     const branch: string = pipeleMock.object_attributes.ref;
     const commit: string = pipeleMock.commit.id;
 
-    res.status(200).json("Initialized");
+    if (!path || !builds || !project || !branch || !commit) {
+      return res.status(200);
+    }
+
+    res.status(203);
+
     builds.forEach(async (build) => {
+      if (build.name !== "static_build") return;
+
       const srcPath = getSrcPath(build);
       try {
         // Get artefact zip file
         const response = await fetch(
-          `https://gitlab.com/${path}/-/jobs/artifacts/${branch}/download?job=${build.name}`
+          `https://gitlab.com/${path}/-/jobs/artifacts/${branch}/download?job=static_build`
         );
         const buffer = await response.buffer();
 
@@ -80,8 +87,8 @@ export default async (req: Request, res: NextApiResponse) => {
         console.log("Error: ", error);
         // Clean builds folder
         rimraf(srcPath, () => console.log("Build cleaned up"));
-        res.status(500).json(error);
+        res.status(500);
       }
     });
-  }
+  } else return res.status(405);
 };

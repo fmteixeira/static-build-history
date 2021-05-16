@@ -1,19 +1,19 @@
 {
   "object_kind": "pipeline",
   "object_attributes": {
-    "id": 303429779,
-    "ref": "main",
+    "id": 303622385,
+    "ref": "dev",
     "tag": false,
-    "sha": "8701866d6aa9e8cd84dfeb0c9ec160b9927539b5",
-    "before_sha": "ff8c1970dc67eb9adeb51814a57bb7c4870ca8d7",
+    "sha": "cdbc51ca44a58c78047ca4d477f548d319a9a259",
+    "before_sha": "b7829a66b90995d065f5f7acb7026b71dded45bf",
     "source": "push",
     "status": "success",
     "detailed_status": "passed",
     "stages": ["build"],
-    "created_at": "2021-05-15 18:31:49 UTC",
-    "finished_at": "2021-05-15 18:35:47 UTC",
-    "duration": 236,
-    "queued_duration": 2,
+    "created_at": "2021-05-16 14:17:15 UTC",
+    "finished_at": "2021-05-16 14:21:36 UTC",
+    "duration": 259,
+    "queued_duration": null,
     "variables": []
   },
   "merge_request": null,
@@ -39,11 +39,11 @@
     "ci_config_path": ""
   },
   "commit": {
-    "id": "8701866d6aa9e8cd84dfeb0c9ec160b9927539b5",
-    "message": "fixed storybook cicd\n",
-    "title": "fixed storybook cicd",
-    "timestamp": "2021-05-15T18:31:43+00:00",
-    "url": "https://gitlab.com/Fred400/front-end-stack/-/commit/8701866d6aa9e8cd84dfeb0c9ec160b9927539b5",
+    "id": "cdbc51ca44a58c78047ca4d477f548d319a9a259",
+    "message": "Merge branch 'main' into dev\n",
+    "title": "Merge branch 'main' into dev",
+    "timestamp": "2021-05-16T14:17:03+00:00",
+    "url": "https://gitlab.com/Fred400/front-end-stack/-/commit/cdbc51ca44a58c78047ca4d477f548d319a9a259",
     "author": {
       "name": "Frederico",
       "email": "black_trim@hotmail.com"
@@ -51,15 +51,15 @@
   },
   "builds": [
     {
-      "id": 1264822871,
+      "id": 1265627791,
       "stage": "build",
-      "name": "build_storybook",
+      "name": "static_build",
       "status": "success",
-      "created_at": "2021-05-15 18:31:49 UTC",
-      "started_at": "2021-05-15 18:31:51 UTC",
-      "finished_at": "2021-05-15 18:35:47 UTC",
-      "duration": 236.085024,
-      "queued_duration": 1.907721,
+      "created_at": "2021-05-16 14:17:15 UTC",
+      "started_at": "2021-05-16 14:17:16 UTC",
+      "finished_at": "2021-05-16 14:21:36 UTC",
+      "duration": 259.547868,
+      "queued_duration": 0.716994,
       "when": "on_success",
       "manual": false,
       "allow_failure": false,
@@ -71,14 +71,14 @@
         "email": "black_trim@hotmail.com"
       },
       "runner": {
-        "id": 380986,
-        "description": "shared-runners-manager-5.gitlab.com",
+        "id": 380987,
+        "description": "shared-runners-manager-6.gitlab.com",
         "active": true,
         "tags": ["docker", "gce"]
       },
       "artifacts_file": {
         "filename": "artifacts.zip",
-        "size": 1933901
+        "size": 2187796
       },
       "environment": null
     }
