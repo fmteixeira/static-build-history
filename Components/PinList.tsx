@@ -1,23 +1,24 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+import { useQuery } from "react-query";
 // Components
+import Pin from "./Pin";
 // Api
 // Context
 // Hooks
 // Pages
 // Resources
-import { Pin } from "../resources/types/interfaces";
-
+import { Pin as PinInterface } from "../resources/types/interfaces";
 interface Props {
-  pins: Pin[];
+  pins: PinInterface[];
 }
 
 const PinList: FC<Props> = ({ pins }) => {
   return (
-    <>
+    <div className="grid place-items-center gap-3">
       {pins.map((pin) => (
-        <div key={pin.id}>{pin.name}</div>
+        <Pin key={pin.id} pin={pin} />
       ))}
-    </>
+    </div>
   );
 };
 

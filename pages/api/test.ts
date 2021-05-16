@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Pipeline } from "../../mocks/types";
 import { resolve } from "path";
 const AdmZip = require("adm-zip");
 const rimraf = require("rimraf");
@@ -10,7 +9,11 @@ const pinata = pinataSDK(
   process.env.PINATA_API_KEY,
   process.env.PINATA_API_SECRET
 );
-import pipeleMock from "../../mocks/pipeline.json";
+import { Pipeline } from "../../Api/mocks/types";
+import pipeleMock from "../../Api/mocks/pipeline.json";
+import { createPinCrawlFile } from "../../resources/utils/crawlFile";
+import { PinCrawl } from "../../Api/types";
+import getSrcPath from "../../resources/utils/getSrcPath";
 
 const dir = process.env.BUILD_FOLDER;
 
@@ -26,12 +29,14 @@ export default async (req: Request, res: NextApiResponse) => {
     // const builds: Pipeline.Build[] = req.body.builds;
 
     const path: string = pipeleMock.project.path_with_namespace;
-    const branch: string = pipeleMock.object_attributes.ref;
     const builds: Pipeline.Build[] = pipeleMock.builds;
+    const project: string = pipeleMock.project.name;
+    const branch: string = pipeleMock.object_attributes.ref;
+    const commit: string = pipeleMock.commit.id;
 
     res.status(200).json("Initialized");
     builds.forEach(async (build) => {
-      const srcPath = `${dir}/${build.id}`;
+      const srcPath = getSrcPath(build);
       try {
         // Get artefact zip file
         const response = await fetch(
@@ -42,11 +47,11 @@ export default async (req: Request, res: NextApiResponse) => {
         const zip = new AdmZip(buffer);
         const zipEntries = zip.getEntries();
         // Extract zip's files to srcPath
-        zip.extractAllToAsync(srcPath, true, () => {
+        zip.extractAllToAsync(srcPath, true, async () => {
           pinata.testAuthentication();
           const options = {
             pinataMetadata: {
-              name: `${build.name}-${build.id}`,
+              name: `${project}@${branch}@${commit}`,
               keyvalues: {
                 customKey: build.id,
               },
@@ -56,9 +61,8 @@ export default async (req: Request, res: NextApiResponse) => {
             },
           };
           // Save srcPath files to Pinata Cloud
-          const pinataPath = resolve(`${dir.replace(".", "")}/${build.id}/`);
           pinata
-            .pinFromFS(pinataPath, options)
+            .pinFromFS(srcPath, options)
             .then((result) => {
               console.log("Upload to Pinata success");
               console.log(result);
